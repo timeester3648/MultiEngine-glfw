@@ -101,3 +101,8 @@ tests/triangle-vulkan
 tests/window
 tests/windows
 
+# exclude project files
+**.sln
+**.vcxproj
+**.vcxproj.user
+**.vcxproj.filters
