@@ -9,9 +9,9 @@ project "glfw"
 	inlining "Auto"
 
 	files {
-		"./**.h",
-		"./**.c",
-		"./**.m"
+		"./include/**.h",
+		"./src/**.c",
+		"./src/**.m"
 	}
 
 	includedirs {
