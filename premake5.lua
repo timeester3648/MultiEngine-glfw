@@ -28,7 +28,6 @@ project "glfw"
 		excludes {
 			"./src/wl_init.c",
 			"./src/x11_init.c",
-			"./src/null_init.c",
 			"./src/wl_window.c",
 			"./src/posix_poll.c",
 			"./src/x11_window.c",
@@ -38,11 +37,8 @@ project "glfw"
 			"./src/xkb_unicode.c",
 			"./src/x11_monitor.c",
 			"./src/glx_context.c",
-			"./src/null_window.c",
 			"./src/posix_module.c",
-			"./src/null_monitor.c",
 			"./src/posix_thread.c",
-			"./src/null_joystick.c",
 			"./src/linux_joystick.c",
 
 			"./**.m"
