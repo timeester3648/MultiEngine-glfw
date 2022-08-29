@@ -927,6 +927,18 @@ extern "C" {
  */
 #define GLFW_MOUSE_PASSTHROUGH      0x0002000D
 
+/*! @brief Initial position x-coordinate window hint.
+ *
+ *  Initial position x-coordinate [window hint](@ref GLFW_POSITION_X).
+ */
+#define GLFW_POSITION_X             0x0002000E
+
+/*! @brief Initial position y-coordinate window hint.
+ *
+ *  Initial position y-coordinate [window hint](@ref GLFW_POSITION_Y).
+ */
+#define GLFW_POSITION_Y             0x0002000F
+
 /*! @brief Framebuffer bit depth hint.
  *
  *  Framebuffer bit depth [hint](@ref GLFW_RED_BITS).
@@ -1105,6 +1117,12 @@ extern "C" {
  */
 #define GLFW_X11_INSTANCE_NAME      0x00024002
 #define GLFW_WIN32_KEYBOARD_MENU    0x00025001
+/*! @brief Wayland specific
+ *  [window hint](@ref GLFW_WAYLAND_APP_ID_hint).
+ *  
+ *  Allows specification of the Wayland app_id.
+ */
+#define GLFW_WAYLAND_APP_ID         0x00026001
 /*! @} */
 
 #define GLFW_NO_API                          0
@@ -1128,6 +1146,7 @@ extern "C" {
 #define GLFW_CURSOR_NORMAL          0x00034001
 #define GLFW_CURSOR_HIDDEN          0x00034002
 #define GLFW_CURSOR_DISABLED        0x00034003
+#define GLFW_CURSOR_CAPTURED        0x00034004
 
 #define GLFW_ANY_RELEASE_BEHAVIOR            0
 #define GLFW_RELEASE_BEHAVIOR_FLUSH 0x00035001
@@ -1144,6 +1163,8 @@ extern "C" {
 #define GLFW_ANGLE_PLATFORM_TYPE_D3D11   0x00037005
 #define GLFW_ANGLE_PLATFORM_TYPE_VULKAN  0x00037007
 #define GLFW_ANGLE_PLATFORM_TYPE_METAL   0x00037008
+
+#define GLFW_ANY_POSITION           0x80000000
 
 /*! @defgroup shapes Standard cursor shapes
  *  @brief Standard system cursor shapes.
@@ -3029,10 +3050,10 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  OpenGL or OpenGL ES context.
  *
  *  By default, newly created windows use the placement recommended by the
- *  window system.  To create the window at a specific position, make it
- *  initially invisible using the [GLFW_VISIBLE](@ref GLFW_VISIBLE_hint) window
- *  hint, set its [position](@ref window_pos) and then [show](@ref window_hide)
- *  it.
+ *  window system.  To create the window at a specific position, set the @ref
+ *  GLFW_POSITION_X and @ref GLFW_POSITION_Y window hints before creation.  To
+ *  restore the default behavior, set either or both hints back to
+ *  `GLFW_ANY_POSITION`.
  *
  *  As long as at least one full screen window is not iconified, the screensaver
  *  is prohibited from starting.
@@ -3671,8 +3692,9 @@ GLFWAPI void glfwSetWindowOpacity(GLFWwindow* window, float opacity);
  *  previously restored.  If the window is already iconified, this function does
  *  nothing.
  *
- *  If the specified window is a full screen window, the original monitor
- *  resolution is restored until the window is restored.
+ *  If the specified window is a full screen window, GLFW restores the original
+ *  video mode of the monitor.  The window's desired video mode is set again
+ *  when the window is restored.
  *
  *  @param[in] window The window to iconify.
  *
@@ -3702,8 +3724,8 @@ GLFWAPI void glfwIconifyWindow(GLFWwindow* window);
  *  (minimized) or maximized.  If the window is already restored, this function
  *  does nothing.
  *
- *  If the specified window is a full screen window, the resolution chosen for
- *  the window is restored on the selected monitor.
+ *  If the specified window is an iconified full screen window, its desired
+ *  video mode is set again for its monitor when the window is restored.
  *
  *  @param[in] window The window to restore.
  *
@@ -3970,6 +3992,9 @@ GLFWAPI void glfwSetWindowMonitor(GLFWwindow* window, GLFWmonitor* monitor, int 
  *  attributes so you cannot use a return value of zero as an indication of
  *  errors.  However, this function should not fail as long as it is passed
  *  valid arguments and the library has been [initialized](@ref intro_init).
+ *
+ *  @remark @wayland The Wayland protocol provides no way to check whether a
+ *  window is iconfied, so @ref GLFW_ICONIFIED always returns `GLFW_FALSE`.
  *
  *  @thread_safety This function must only be called from the main thread.
  *
@@ -4556,6 +4581,8 @@ GLFWAPI int glfwGetInputMode(GLFWwindow* window, int mode);
  *  - `GLFW_CURSOR_DISABLED` hides and grabs the cursor, providing virtual
  *    and unlimited cursor movement.  This is useful for implementing for
  *    example 3D camera controls.
+ *  - `GLFW_CURSOR_CAPTURED` makes the cursor visible and confines it to the
+ *    content area of the window.
  *
  *  If the mode is `GLFW_STICKY_KEYS`, the value must be either `GLFW_TRUE` to
  *  enable sticky keys, or `GLFW_FALSE` to disable it.  If sticky keys are
@@ -4730,8 +4757,7 @@ GLFWAPI int glfwGetKeyScancode(int key);
  *
  *  This function returns the last state reported for the specified key to the
  *  specified window.  The returned state is one of `GLFW_PRESS` or
- *  `GLFW_RELEASE`.  The higher-level action `GLFW_REPEAT` is only reported to
- *  the key callback.
+ *  `GLFW_RELEASE`.  The action `GLFW_REPEAT` is only reported to the key callback.
  *
  *  If the @ref GLFW_STICKY_KEYS input mode is enabled, this function returns
  *  `GLFW_PRESS` the first time you call it for a key that was pressed, even if

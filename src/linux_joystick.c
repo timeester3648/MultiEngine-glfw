@@ -128,7 +128,7 @@ static GLFWbool openJoystickDevice(const char* path)
 {
     for (int jid = 0;  jid <= GLFW_JOYSTICK_LAST;  jid++)
     {
-        if (_glfw.joysticks[jid].connected)
+        if (!_glfw.joysticks[jid].connected)
             continue;
         if (strcmp(_glfw.joysticks[jid].linjs.path, path) == 0)
             return GLFW_FALSE;
@@ -157,7 +157,7 @@ static GLFWbool openJoystickDevice(const char* path)
     }
 
     // Ensure this device supports the events expected of a joystick
-    if (!isBitSet(EV_KEY, evBits) || !isBitSet(EV_ABS, evBits))
+    if (!isBitSet(EV_ABS, evBits))
     {
         close(linjs.fd);
         return GLFW_FALSE;

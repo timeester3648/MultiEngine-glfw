@@ -19,6 +19,7 @@ video tutorials.
  - Nevyn Bengtsson
  - Niklas Bergström
  - Denis Bernard
+ - BiBi
  - Doug Binks
  - blanco
  - Waris Boonyasiriwat
@@ -60,6 +61,7 @@ video tutorials.
  - Jan Ekström
  - Siavash Eliasi
  - Ahmad Fatoum
+ - Nikita Fediuchin
  - Felipe Ferreira
  - Michael Fogleman
  - Jason Francis
@@ -80,10 +82,12 @@ video tutorials.
  - Jonathan Hale
  - hdf89shfdfs
  - Sylvain Hellegouarch
+ - Björn Hempel
  - Matthew Henry
  - heromyth
  - Lucas Hinderberger
  - Paul Holden
+ - Hajime Hoshi
  - Warren Hu
  - Charles Huber
  - Brent Huisman
@@ -149,8 +153,10 @@ video tutorials.
  - James Murphy
  - Julian Møller
  - ndogxj
+ - F. Nedelec
  - n3rdopolis
  - Kristian Nielsen
+ - Joel Niemelä
  - Kamil Nowakowski
  - onox
  - Denis Ovod
@@ -160,6 +166,7 @@ video tutorials.
  - Peoro
  - Braden Pellett
  - Christopher Pelloux
+ - Michael Pennington
  - Arturo J. Pérez
  - Vladimir Perminov
  - Olivier Perret
@@ -178,9 +185,11 @@ video tutorials.
  - pthom
  - Martin Pulec
  - Guillaume Racicot
+ - Christian Rauch
  - Philip Rideout
  - Eddie Ringle
  - Max Risuhin
+ - Joe Roback
  - Jorge Rodriguez
  - Jari Ronkainen
  - Luca Rood
