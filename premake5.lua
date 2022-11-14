@@ -19,7 +19,7 @@ project "glfw"
 
 		"%{IncludeDir.glfw}",
 		"%{IncludeDir.spdlog}",
-		"%{IncludeDir.vulkan_sdk}",
+		"%{IncludeDir.vulkan_headers}",
 		"%{IncludeDir.general_includes}"
 	}
 
