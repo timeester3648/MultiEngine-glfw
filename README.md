@@ -79,6 +79,8 @@ more information.
 
 ## System requirements
 
+GLFW is written in C99 and does not support Visual Studio 2012 or earlier.
+
 GLFW supports Windows XP and later and macOS 10.8 and later.  Linux and other
 Unix-like systems running the X Window System are supported even without
 a desktop environment or modern extensions, although some features require
@@ -234,6 +236,7 @@ information on what to include when reporting a bug.
  - [Win32] Bugfix: `glfwWaitEventsTimeout` did not return for some sent messages (#2408)
  - [Win32] Bugfix: Fix pkg-config for dynamic library on Windows (#2386, #2420)
  - [Win32] Bugfix: XInput could reportedly provide invalid DPad bit masks (#2291)
+ - [Win32] Bugfix: Rapid clipboard calls could fail due to Clipboard History
  - [Cocoa] Added support for `VK_EXT_metal_surface` (#1619)
  - [Cocoa] Added locating the Vulkan loader at runtime in an application bundle
  - [Cocoa] Moved main menu creation to GLFW initialization time (#1649)
@@ -276,6 +279,8 @@ information on what to include when reporting a bug.
    subdirectory (#2113,#2120)
  - [Cocoa] Bugfix: Compilation failed on OS X 10.8 due to unconditional use of 10.9+
    symbols (#2161)
+ - [Cocoa] Bugfix: Querying joystick elements could reportedly segfault on macOS
+   13 Ventura (#2320)
  - [X11] Bugfix: The CMake files did not check for the XInput headers (#1480)
  - [X11] Bugfix: Key names were not updated when the keyboard layout changed
    (#1462,#1528)
@@ -407,8 +412,9 @@ information on what to include when reporting a bug.
    (#442)
  - [EGL] Added ANGLE backend selection via `EGL_ANGLE_platform_angle` extension
    (#1380)
-   [EGL] Added loading of glvnd `libOpenGL.so.0` where available for OpenGL
+ - [EGL] Added loading of glvnd `libOpenGL.so.0` where available for OpenGL
  - [EGL] Bugfix: The `GLFW_DOUBLEBUFFER` context attribute was ignored (#1843)
+ - [EGL] Bugfix: Setting `GLFW_CONTEXT_DEBUG` caused creation to fail (#2348)
  - [GLX] Added loading of glvnd `libGLX.so.0` where available
  - [GLX] Bugfix: Context creation failed if GLX 1.4 was not exported by GLX library
 
