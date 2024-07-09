@@ -6,11 +6,7 @@ void main(MultiBuild::Workspace& workspace) {
 	properties.binary_object_kind(MultiBuild::BinaryObjectKind::eStaticLib);
 	project.license("./LICENSE.md");
 
-	properties.include_directories({
-		"glfw",
-		"spdlog",
-		"Vulkan-Headers"
-	});
+	properties.include_directories("Vulkan-Headers");
 
 	project.include_own_required_includes(true);
 	project.add_required_project_include({
