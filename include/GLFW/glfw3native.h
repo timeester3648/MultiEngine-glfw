@@ -199,6 +199,8 @@ GLFWAPI const char* glfwGetWin32Adapter(GLFWmonitor* monitor);
  */
 GLFWAPI const char* glfwGetWin32Monitor(GLFWmonitor* monitor);
 
+GLFWAPI HMONITOR glfwGetWin32MonitorHandle(GLFWmonitor* monitor);
+
 /*! @brief Returns the `HWND` of the specified window.
  *
  *  @return The `HWND` of the specified window, or `NULL` if an

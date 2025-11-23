@@ -570,5 +570,20 @@ GLFWAPI const char* glfwGetWin32Monitor(GLFWmonitor* handle)
     return monitor->win32.publicDisplayName;
 }
 
+HMONITOR glfwGetWin32MonitorHandle(GLFWmonitor* handle)
+{
+    _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
+
+    if (_glfw.platform.platformID != GLFW_PLATFORM_WIN32) {
+        _glfwInputError(GLFW_PLATFORM_UNAVAILABLE, "Win32: Platform not initialized");
+        return NULL;
+    }
+
+    _GLFWmonitor* monitor = (_GLFWmonitor*) handle;
+    assert(monitor != NULL);
+
+    return monitor->win32.handle;
+}
+
 #endif // _GLFW_WIN32
 
